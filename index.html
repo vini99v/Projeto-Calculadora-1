@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Moderna</title>
+
+  <!-- Estilo CSS embutido -->
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Corpo e centralização */
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f9;
+      margin: 0;
+    }
+
+    /* Contêiner da calculadora */
+    .calculator {
+      width: 320px;
+      background: #2c3e50;
+      border-radius: 10px;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    /* Display da calculadora */
+    .display {
+      margin-bottom: 20px;
+    }
+
+    #display {
+      width: 100%;
+      height: 50px;
+      text-align: right;
+      font-size: 2em;
+      padding: 10px;
+      background-color: #ecf0f1;
+      border: none;
+      border-radius: 5px;
+      color: #34495e;
+      outline: none;
+    }
+
+    /* Botões */
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .btn {
+      background-color: #3498db;
+      color: white;
+      font-size: 1.5em;
+      padding: 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #2980b9;
+    }
+
+    .btn:active {
+      background-color: #1abc9c;
+    }
+
+    .btn:focus {
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Estrutura da Calculadora -->
+  <div class="calculator">
+    <div class="display">
+      <input type="text" id="display" disabled />
+    </div>
+    <div class="buttons">
+      <button class="btn" onclick="appendNumber(7)">7</button>
+      <button class="btn" onclick="appendNumber(8)">8</button>
+      <button class="btn" onclick="appendNumber(9)">9</button>
+      <button class="btn" onclick="appendOperator('+')">+</button>
+
+      <button class="btn" onclick="appendNumber(4)">4</button>
+      <button class="btn" onclick="appendNumber(5)">5</button>
+      <button class="btn" onclick="appendNumber(6)">6</button>
+      <button class="btn" onclick="appendOperator('-')">-</button>
+
+      <button class="btn" onclick="appendNumber(1)">1</button>
+      <button class="btn" onclick="appendNumber(2)">2</button>
+      <button class="btn" onclick="appendNumber(3)">3</button>
+      <button class="btn" onclick="appendOperator('*')">*</button>
+
+      <button class="btn" onclick="appendNumber(0)">0</button>
+      <button class="btn" onclick="clearDisplay()">C</button>
+      <button class="btn" onclick="calculate()">=</button>
+      <button class="btn" onclick="appendOperator('/')">/</button>
+    </div>
+  </div>
+
+  <!-- Código JavaScript embutido -->
+  <script>
+    let display = document.getElementById('display');
+
+    // Função para adicionar números ao display
+    function appendNumber(number) {
+      display.value += number;
+    }
+
+    // Função para adicionar operadores (+, -, *, /) ao display
+    function appendOperator(operator) {
+      display.value += ` ${operator} `;
+    }
+
+    // Função para limpar o display
+    function clearDisplay() {
+      display.value = '';
+    }
+
+    // Função para calcular a expressão no display
+    function calculate() {
+      try {
+        display.value = eval(display.value); // Avalia a expressão matemática
+      } catch {
+        display.value = 'Erro'; // Caso a expressão seja inválida
+      }
+    }
+  </script>
+
+</body>
+</html>
